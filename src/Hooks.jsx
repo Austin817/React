@@ -13,8 +13,22 @@ function Hooks () {
         console.log(a);
     }
 
+    const handleOnChange = (event) => {
+        console.log(event.target.value);
+        setText(event.target.value)
+    }
+
     return (<div>
         Hooks
+
+        <button onClick={() => {
+            // a++;
+            
+            setA(a + 1)
+            console.log(a);
+            
+        }}>{a}</button>
+
         <button onClick={handleOnClick
             // a++;
             
@@ -23,12 +37,17 @@ function Hooks () {
             
         }>{a}</button>
 
+        
+
 
         {text}
         <input type="text" value={text} onChange={(event) => {
             console.log(event.target.value);
             setText(event.target.value)
         }}/>
+
+        {text}
+        <input type="text" value={text} onChange={handleOnChange}/>
 
     </div>)
 }
