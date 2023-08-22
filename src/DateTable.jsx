@@ -57,18 +57,36 @@ function DataTable() {
                         <td><button onClick={() => {
                             // setTodo(!item.completed)
                             // 這樣會錯 setTodo...，請寫入完整的值
-                            const newTodo = [...data]; // 展開 ES6
+
+                            // const newTodo = [...data]; // 展開 ES6
 
                             // 只能改變一個位置
                             // newTodo[0].completed = !newTodo[0].completed;
-                            // console.log(newTodo);
 
                             // 改變特定位置 todo
-                            newTodo.forEach((newItem) => {
-                                if (newItem.id === item.id) {
-                                    newItem.completed = !item.completed
-                                }                                
-                            });
+                            // 1.簡單版
+                            // newTodo.forEach((newItem) => {
+                            //     if (newItem.id === item.id) {
+                            //         newItem.completed = !newItem.completed
+                            //     }                                
+                            // });
+
+                            // 2.中階
+                            // const newTodo = todo.map((newItem) => {
+                            //     if (newItem.id === item.id) {
+                            //         newItem.completed = !newItem.completed
+                            //     }
+                            //     return newItem
+                            // });
+
+                            // 3.惡夢
+                            const newTodo = todo.map((newItem) => newItem.id === item.id ? {
+                                    ...newItem,
+                                    completed: !newItem.completed                                    
+                                } : newItem
+                            );
+
+
                             console.log(newTodo);
                             setTodo(newTodo);
                         }}>{item.completed? '是':'否'}</button></td>
